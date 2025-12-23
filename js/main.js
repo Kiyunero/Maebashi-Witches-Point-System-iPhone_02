@@ -397,8 +397,6 @@ const REWARD_IMAGES = [
     { name: 'コンプリート報酬', url: 'images/special_reward.png' },
 ];
 
-// コンプリート時の合言葉
-const COMPLETE_SECRET_CODE = '123456'; 
 // --- 設定項目ここまで ---
 
 
@@ -426,7 +424,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 isQuestClearAnimationVisible: false,
                 isCompleteScreenVisible: false, 
                 rewardImages: REWARD_IMAGES, 
-                completeSecretCode: COMPLETE_SECRET_CODE, 
                 mapMarkers: [],
                 isDemoMode: isDemoMode
             };

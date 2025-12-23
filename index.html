@@ -39,27 +39,21 @@
         <div v-else>
             <div id="complete-overlay" v-if="isCompleteScreenVisible">
                 <div class="complete-container">
-                    <h1 class="complete-title">CONGRATULATIONS!</h1>
-                    <p class="complete-subtitle">全ての修行を達成しました！</p>
+                    <h1 class="complete-title">CONGRATULATIONS</h1>
+                    <p class="complete-subtitle">指定回数のクエストをクリアしました！</p>
                     <hr class="complete-hr">
-                    <p class="complete-message">特別な報酬をプレゼント！</p>
+                    <p class="complete-message">限定壁紙をプレゼント！</p>
                     
                     <div class="rewards-wrapper">
                         <div v-for="(reward, index) in rewardImages" :key="index" class="reward-item">
                             <img :src="reward.url" :alt="reward.name" class="reward-image">
                             <p class="reward-name">{{ reward.name }}</p>
-                            <button class="btn btn-warning btn-sm mt-2" @click="downloadImage(reward.url)">
-                                この画像をダウンロード
+                            <button class="btn btn-warning mt-2" @click="downloadImage(reward.url)">
+                                ダウンロード
                             </button>
                         </div>
                     </div>
 
-                    <div class="secret-code-container">
-                        <p class="secret-code-message">この合言葉を「2D WORLD」内の開放ボタンから入力して特典ゲット！</p>
-                        <div class="secret-code-box">
-                            <span>{{ completeSecretCode }}</span>
-                        </div>
-                    </div>
                     <button class="btn btn-light mt-4" @click="closeCompleteScreen">
                         閉じる
                     </button>
@@ -75,12 +69,12 @@
                 <hr class="my-4">
 
                 <div class="card p-3 mb-4 shadow-sm text-center">
-                    <h5 class="card-title">あなたが所有しているマポ</h5>
+                    <h5 class="card-title">所有マポ</h5>
                     <p class="display-4 fw-bold text-primary mb-0">{{ userProfile?.points || 0 }} P</p>
                 </div>
 
                 <div class="card p-3 mb-4 shadow-sm">
-                    <h5 class="card-title">マポを貯めると良いことあるかも？</h5>
+                    <h5 class="card-title">マポを貯めて限定壁紙GET！</h5>
                     <div class="stamp-card-container">
                         <img src="images/stamp_base.png" alt="スタンプ台紙">
                         <img v-for="stamp in completedStamps" :key="stamp" :src="stamp" class="stamp-layer" alt="スタンプ">
@@ -89,12 +83,12 @@
 
                 <div v-if="isStampCompleted" class="d-grid gap-2 mb-4">
                     <button class="btn btn-warning" @click="showCompleteScreen">
-                        🎉 コンプリート報酬を確認する
+                        🎉 コンプリート報酬を確認する 🎉
                     </button>
                 </div>
 
                 <div v-if="inProgressQuests.length > 0" class="card p-3 mb-4 shadow-sm quest-list-container">
-                    <h5 class="card-title text-center">進行中の修行内容</h5>
+                    <h5 class="card-title text-center">進行中のクエスト内容</h5>
                     <div class="list-group">
                         <a v-for="quest in inProgressQuests" 
                            :key="quest.id" 
@@ -119,15 +113,15 @@
                     {{ scanResultMessage }}
                 </div>
                 <div class="card p-3 my-4 shadow-sm">
-                    <h5 class="card-title">推シャン機と連携</h5>
-                    <p>ボタンを押して出てきた合言葉を推シャン機の画面に入力しよう！</p>
+                    <h5 class="card-title">推しゃんきと連携</h5>
+                    <p>ボタンを押して出てきた合言葉を推しゃんきの画面で入力しよう！</p>
                     <button class="btn btn-primary btn-lg mt-2" @click="generateAuthToken" :disabled="isTokenLoading">
                         <span v-if="isTokenLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         合言葉を発行する
                     </button>
                     <div v-if="authToken" class="mt-4 alert alert-success">
                         <h4>合言葉: <span class="auth-token">{{ authToken }}</span></h4>
-                        <p class="mb-0">この番号を推シャン機に入力してね！(※有効期限5分)</p>
+                        <p class="mb-0">この番号を推しゃんきに入力してね！(※有効期限5分)</p>
                     </div>
                      <div v-if="errorMessage" class="mt-4 alert alert-danger">
                         <p class="mb-0">{{ errorMessage }}</p>
