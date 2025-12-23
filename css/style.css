@@ -1,0 +1,315 @@
+body {
+    background-color: #f8f9fa;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#animation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+#animation-overlay > div {
+    max-width: 90%;
+    max-height: 90%;
+    width: 400px; 
+}
+
+
+#app {
+    max-width: 100%;
+    padding: 0;
+}
+
+/* ▼▼▼ 追加：デモモード用ボタンのスタイル ▼▼▼ */
+.demo-controls {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.mode-toggle-btn {
+    opacity: 0.3; /* 目立たないように半透明 */
+    font-size: 0.7rem;
+    transition: opacity 0.3s;
+}
+
+.mode-toggle-btn:hover {
+    opacity: 1.0;
+}
+
+/* デモモード中は少し濃くする */
+.mode-toggle-btn.btn-dark {
+    opacity: 0.8;
+}
+
+.demo-reset-btn {
+    font-size: 0.8rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ▲▲▲ 追加ここまで ▲▲▲ */
+
+
+/* --- コンプリート画面のスタイル --- */
+@keyframes background-pan {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float-in {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes halo-effect {
+    0% { box-shadow: 0 0 20px 5px rgba(255, 223, 150, 0.6), 0 0 30px 15px rgba(255, 180, 50, 0.4); }
+    50% { box-shadow: 0 0 30px 10px rgba(255, 223, 150, 0.8), 0 0 45px 20px rgba(255, 180, 50, 0.6); }
+    100% { box-shadow: 0 0 20px 5px rgba(255, 223, 150, 0.6), 0 0 30px 15px rgba(255, 180, 50, 0.4); }
+}
+
+#complete-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #1d2b64, #f8cdda, #1d2b64, #f8cdda);
+    background-size: 400% 400%;
+    animation: background-pan 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.complete-container {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    color: white;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.complete-title {
+    font-size: clamp(1.8rem, 10vw, 2.8rem);
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #E6A200, 0 0 30px #E6A200;
+    margin-bottom: 0.5rem;
+    word-break: break-all;
+}
+
+.complete-subtitle {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.complete-hr {
+    border-color: rgba(255, 215, 0, 0.5);
+    border-width: 2px;
+}
+
+.complete-message {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.rewards-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.reward-item {
+    animation: float-in 0.8s ease-out forwards;
+}
+
+.reward-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 3px solid #FFD700;
+    animation: halo-effect 4s ease-in-out infinite;
+}
+
+.reward-name {
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.secret-code-container {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 2.5rem;
+    animation: float-in 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.secret-code-message {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    line-height: 1.6;
+}
+
+.secret-code-box {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.secret-code-box span {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #FFD700;
+    letter-spacing: 0.3em;
+    text-shadow: 0 0 4px #FFD700, 0 0 10px #E6A200;
+    margin-left: 0.3em; 
+}
+/* --- コンプリート画面ここまで --- */
+
+
+#map-container {
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    z-index: 1; /* Leafletのz-indexと競合しないように低めに */
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.content-container {
+    padding: 1rem;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.user-id {
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: #e83e8c;
+    word-wrap: break-word;
+}
+
+.auth-token {
+    font-weight: bold;
+    color: #0d6efd;
+    letter-spacing: 2px;
+}
+
+#scanner-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10002; /* かなり手前に */
+}
+
+#scanner-video {
+    width: 80%;
+    max-width: 400px;
+    border: 3px solid white;
+    border-radius: 8px;
+}
+
+#scanner-container .btn {
+    margin-top: 20px;
+}
+
+.stamp-card-container {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.stamp-card-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.stamp-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.quest-list-container {
+    text-align: left;
+}
+
+.quest-item-action {
+    background-color: #e9ecef;
+    color: #212529;
+    margin-bottom: 10px;
+}
+
+.quest-item-action:hover,
+.quest-item-action:focus {
+    background-color: #dcdfe2; 
+    color: #212529;
+}
+
+.quest-map-link {
+    font-size: 0.85rem;
+    color: #0d6efd;
+    font-weight: bold;
+    white-space: nowrap;
+    padding-left: 0.5rem;
+}

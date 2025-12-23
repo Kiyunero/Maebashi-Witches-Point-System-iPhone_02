@@ -1,0 +1,21 @@
+{
+    "name": "聖地巡礼クエスト",
+    "short_name": "巡礼クエスト",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#f8f9fa",
+    "theme_color": "#ffffff",
+    "description": "聖地を巡ってスタンプを集めるクエストアプリ",
+    "icons": [
+      {
+        "src": "images/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "images/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
